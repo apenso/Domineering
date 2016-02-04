@@ -6,9 +6,31 @@ public class Domineering {
 	 */
 	public static void draw(boolean[][] board, boolean verticalToPlay) {
 		StdDraw.clear();
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.filledRectangle(0, 0, 1, 1);
-		StdDraw.show(0);
+		 		StdDraw.setXscale(-.5, 9.5);
+				StdDraw.setYscale(-.5, 9.5);
+		 		StdDraw.setPenColor(StdDraw.BLUE);
+		 		for (int y = 1; y <= 7; y = y + 2) {
+		 			for (int x = 2; x <= 8 && y <= 7; x = x + 2) {
+		 				StdDraw.filledRectangle(x, y, .5, .5);
+		 			}
+		 		}
+		 		for (int y = 2; y <= 8; y = y + 2) {
+		 			for (int x = 1; x <= 7 && y <= 8; x = x + 2) {
+		 				StdDraw.filledRectangle(x, y, .5, .5);
+		 			}
+		 		}
+		 		StdDraw.setPenColor(StdDraw.GREEN);
+		 		for (int y = 1; y <= 7; y = y + 2) {
+		 			for (int x = 1; x <= 7 && y <= 7; x = x + 2) {
+		 				StdDraw.filledRectangle(x, y, .5, .5);
+		 			}
+		 		}
+		 		for (int y = 2; y <= 8; y = y + 2) {
+		 			for (int x = 2; x <= 8 && y <= 8; x = x + 2) {
+		 				StdDraw.filledRectangle(x, y, .5, .5);
+		 			}
+				}
+				StdDraw.show();
 	}
 
 	/**
@@ -16,7 +38,7 @@ public class Domineering {
 	 * move.
 	 */
 	public static boolean gameOver(boolean[][] board, boolean verticalToPlay) {
-		return [][]board;
+		return true;
 		
 		
 	}
@@ -40,12 +62,12 @@ public class Domineering {
 		}
 		int x = (int) a;
 		int y = (int) b;
-		if (isLegal(x, y, board, true)) {
-			placeDomino(x, y, board, true);
+		if (isLegal(x, y, board, verticalToPlay)) {
+			placeDomino(x, y, board, verticalToPlay);
 			opposite(true);
-		} else if (isLegal(x, y, board, false)) {
-			placeDomino(x, y, board, false);
-			opposite(false);
+		} else if (isLegal(x, y, board, verticalToPlay)) {
+			placeDomino(x, y, board, verticalToPlay);
+			opposite(verticalToPlay);
 		}
 		return true;
 	}
@@ -60,30 +82,32 @@ public class Domineering {
 
 		if (verticalToPlay == true) {
 			if (x == ' ' && y == ' ' || x != x + 1 && x == ' ' && y == ' ') {
-				
+				return true;
 			} else {
 
 			}
 
 		} else {
 			if (x == ' ' && y == ' ' || y != y + 1 && x == ' ' && y == ' ') {
-				// true
+				return true;
 			} else {
 
 			}
 
 		}
-
+		return true;
 	}
 
 	/** Plays the game. */
 	public static void main(String[] args) {
-		boolean[][] board = new boolean[8][8];
-		placeDomino(1, 4, board, true);
-		StdOut.println(board[1][4]);
-		StdOut.println(board[2][4]);
-		StdOut.println(board[3][4]);
-		StdOut.println(board[1][5]);
+		boolean [][] board = new boolean[8] [8];
+		boolean verticalToPlay = true;
+		while(!gameOver(board,verticalToPlay)){
+		verticalToPlay = handleMouseClick(board,verticalToPlay);
+			
+		
+			
+		}
 	}
 
 	/**
