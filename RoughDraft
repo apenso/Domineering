@@ -1,0 +1,118 @@
+/** A domino-placing game invented by Goran Andersson. */
+public class Domineering {
+
+	/**
+	 * Draws the current state of the game, including instructions to the user.
+	 */
+	public static void draw(boolean[][] board, boolean verticalToPlay) {
+		StdDraw.clear();
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.filledRectangle(0, 0, 1, 1);
+		StdDraw.show(0);
+	}
+
+	/**
+	 * Returns true if the game is over, i.e., the current player has no legal
+	 * move.
+	 */
+	public static boolean gameOver(boolean[][] board, boolean verticalToPlay) {
+		return [][]board;
+		
+		
+	}
+
+	/**
+	 * Plays a move as specified by the user's mouse click. Returns true if
+	 * vertical is to play next, false otherwise. If an illegal move is
+	 * attempted, this method has no effect and returns the value passed in for
+	 * verticalToPlay.
+	 */
+	public static boolean handleMouseClick(boolean[][] board, boolean verticalToPlay) {
+
+		while (!StdDraw.mousePressed()) {
+
+		}
+
+		double a = Math.round((StdDraw.mouseX()));
+		double b = Math.round((StdDraw.mouseY()));
+		while (StdDraw.mousePressed()) {
+
+		}
+		int x = (int) a;
+		int y = (int) b;
+		if (isLegal(x, y, board, true)) {
+			placeDomino(x, y, board, true);
+			opposite(true);
+		} else if (isLegal(x, y, board, false)) {
+			placeDomino(x, y, board, false);
+			opposite(false);
+		}
+		return true;
+	}
+
+	/**
+	 * Returns true if playing at x, y is legal for the current player. Assumes
+	 * that x, y is on the board but verifies that the other half of the domino
+	 * is on the board.
+	 */
+	public static boolean isLegal(int x, int y, boolean[][] board, boolean verticalToPlay) {
+		// TODO You have to write this
+
+		if (verticalToPlay == true) {
+			if (x == ' ' && y == ' ' || x != x + 1 && x == ' ' && y == ' ') {
+				
+			} else {
+
+			}
+
+		} else {
+			if (x == ' ' && y == ' ' || y != y + 1 && x == ' ' && y == ' ') {
+				// true
+			} else {
+
+			}
+
+		}
+
+	}
+
+	/** Plays the game. */
+	public static void main(String[] args) {
+		boolean[][] board = new boolean[8][8];
+		placeDomino(1, 4, board, true);
+		StdOut.println(board[1][4]);
+		StdOut.println(board[2][4]);
+		StdOut.println(board[3][4]);
+		StdOut.println(board[1][5]);
+	}
+
+	/**
+	 * Returns the opposite value for verticalToPlay. For example,
+	 * opposite(true) is false.
+	 */
+	public static boolean opposite(boolean verticalToPlay) {
+		if (verticalToPlay == true) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Places a domino at x, y with the specified orientation. Assumes the
+	 * placement is legal.
+	 */
+	public static void placeDomino(int x, int y, boolean[][] board, boolean verticalToPlay) {
+
+		if (verticalToPlay == true) {
+
+			x = x + 1;
+
+		} else {
+			y = y + 1;
+
+		}
+
+	}
+
+}
